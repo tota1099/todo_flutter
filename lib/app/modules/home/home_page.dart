@@ -6,7 +6,7 @@ import 'models/todo_model.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  const HomePage({Key key, this.title = "Home"}) : super(key: key);
+  const HomePage({Key key, this.title = "Tarefas"}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -33,6 +33,11 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           if (controller.todoList.data == null) {
             return Center(
               child: CircularProgressIndicator(),
+            );
+          }
+          if (controller.todoList.data.length == 0) {
+            return Center(
+              child: Text("Você concluiu todas as suas tarefas!")
             );
           }
 
