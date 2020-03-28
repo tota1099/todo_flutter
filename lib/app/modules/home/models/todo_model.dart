@@ -4,6 +4,7 @@ class TodoModel {
   String title;
   bool check;
   DocumentReference reference;
+  int position;
 
   TodoModel({this.reference, this.title = '', this.check = false});
 
@@ -19,7 +20,7 @@ class TodoModel {
         .collection('todo')
         .add({'title': title, 'check': check, 'position': total });
     } else {
-      reference.updateData({'title': title, 'check': check});
+      reference.updateData({'title': title, 'check': check, 'position': position});
     }
   }
 
