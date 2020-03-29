@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todo_flutter/app/modules/home/models/todo_model.dart';
+import 'package:todo_flutter/app/modules/task/models/todo_model.dart';
 
 import 'todo_repository_interface.dart';
 

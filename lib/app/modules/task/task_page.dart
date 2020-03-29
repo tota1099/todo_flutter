@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'home_controller.dart';
+import 'task_controller.dart';
 import 'models/todo_model.dart';
 
-class HomePage extends StatefulWidget {
+class TaskPage extends StatefulWidget {
   final String title;
-  const HomePage({Key key, this.title = "Tarefas"}) : super(key: key);
+  const TaskPage({Key key, this.title = "Tarefas"}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _TaskPageState createState() => _TaskPageState();
 }
 
-class _HomePageState extends ModularState<HomePage, HomeController> {
+class _TaskPageState extends ModularState<TaskPage, TaskController> {
   //use 'controller' variable to access controller
 
   @override

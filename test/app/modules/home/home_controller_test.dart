@@ -1,25 +1,25 @@
 import 'package:flutter_modular/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:todo_flutter/app/modules/home/home_module.dart';
+import 'package:todo_flutter/app/modules/task/task_module.dart';
 
 void main() {
-  initModule(HomeModule());
-  // HomeController home;
+  initModule(TaskModule());
+  // TaskController task;
   //
   setUp(() {
-    //     home = HomeModule.to.get<HomeController>();
+    //     task = TaskModule.to.get<TaskController>();
   });
 
-  group('HomeController Test', () {
+  group('TaskController Test', () {
     //   test("First Test", () {
-    //     expect(home, isInstanceOf<HomeController>());
+    //     expect(task, isInstanceOf<TaskController>());
     //   });
 
     //   test("Set Value", () {
-    //     expect(home.value, equals(0));
-    //     home.increment();
-    //     expect(home.value, equals(1));
+    //     expect(task.value, equals(0));
+    //     task.increment();
+    //     expect(task.value, equals(1));
     //   });
   });
 }

@@ -1,18 +1,18 @@
 import 'package:mobx/mobx.dart';
-import 'package:todo_flutter/app/modules/home/models/todo_model.dart';
+import 'package:todo_flutter/app/modules/task/models/todo_model.dart';
 import 'repositories/todo_repository_interface.dart';
 
-part 'home_controller.g.dart';
+part 'task_controller.g.dart';
 
-class HomeController = _HomeControllerBase with _$HomeController;
+class TaskController = _TaskControllerBase with _$TaskController;
 
-abstract class _HomeControllerBase with Store {
+abstract class _TaskControllerBase with Store {
   final ITodoRepository repository;
 
   @observable
   ObservableStream<List<TodoModel>> todoList;
 
-  _HomeControllerBase(ITodoRepository this.repository) {
+  _TaskControllerBase(ITodoRepository this.repository) {
     getList();
   }
 

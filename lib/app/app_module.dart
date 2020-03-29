@@ -2,18 +2,20 @@ import 'package:todo_flutter/app/app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_flutter/app/app_widget.dart';
+import 'modules/login/login_module.dart';
 import 'modules/about/about_module.dart';
-import 'modules/home/home_module.dart';
+import 'modules/task/task_module.dart';
 
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => AppController()),
-      ];
+    Bind((i) => AppController()),
+  ];
 
   @override
   List<Router> get routers => [
-    Router(Modular.initialRoute, module: HomeModule()),
+    Router(Modular.initialRoute, module: LoginModule()),
+    Router("/tasks", module: TaskModule()),
     Router("/about", module: AboutModule()),
   ];
 

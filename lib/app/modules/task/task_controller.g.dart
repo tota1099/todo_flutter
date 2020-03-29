@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_controller.dart';
+part of 'task_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'home_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$HomeController on _HomeControllerBase, Store {
-  final _$todoListAtom = Atom(name: '_HomeControllerBase.todoList');
+mixin _$TaskController on _TaskControllerBase, Store {
+  final _$todoListAtom = Atom(name: '_TaskControllerBase.todoList');
 
   @override
   ObservableStream<List<TodoModel>> get todoList {
@@ -26,16 +26,16 @@ mixin _$HomeController on _HomeControllerBase, Store {
     }, _$todoListAtom, name: '${_$todoListAtom.name}_set');
   }
 
-  final _$_HomeControllerBaseActionController =
-      ActionController(name: '_HomeControllerBase');
+  final _$_TaskControllerBaseActionController =
+      ActionController(name: '_TaskControllerBase');
 
   @override
   dynamic getList() {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
+    final _$actionInfo = _$_TaskControllerBaseActionController.startAction();
     try {
       return super.getList();
     } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+      _$_TaskControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
