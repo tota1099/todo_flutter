@@ -2,7 +2,8 @@ import 'package:todo_flutter/app/app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_flutter/app/app_widget.dart';
-import 'package:todo_flutter/app/modules/home/home_module.dart';
+import 'modules/about/about_module.dart';
+import 'modules/home/home_module.dart';
 
 class AppModule extends MainModule {
   @override
@@ -12,8 +13,9 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router(Modular.initialRoute, module: HomeModule()),
-      ];
+    Router(Modular.initialRoute, module: HomeModule()),
+    Router("/about", module: AboutModule()),
+  ];
 
   @override
   Widget get bootstrap => AppWidget();

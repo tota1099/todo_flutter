@@ -18,47 +18,79 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("Renan Porto"),
+              accountEmail: Text("renan.porto1099@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor:
+                    Theme.of(context).platform == TargetPlatform.iOS
+                        ? Colors.blue
+                        : Colors.white,
+                child: Text(
+                  "R",
+                  style: TextStyle(fontSize: 40.0),
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text("Tarefas"),
+              leading: Icon(Icons.work),
+              onTap: () => Navigator.pushNamed(context, '/'),
+            ),
+            ListTile(
+              title: Text("Sobre"),
+              leading: Icon(Icons.arrow_forward),
+              onTap: () => Navigator.pushNamed(context, '/about'),
+            ),
+          ],
         ),
-        body: Observer(builder: (_) {
-          if (controller.todoList.hasError) {
-            return Center(
-                child: RaisedButton(
-              onPressed: controller.getList,
-              child: Text('Error'),
-            ));
-          }
+      ),
+      body: Observer(builder: (_) {
+        if (controller.todoList.hasError) {
+          return Center(
+              child: RaisedButton(
+            onPressed: controller.getList,
+            child: Text('Error'),
+          ));
+        }
 
-          if (controller.todoList.data == null) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (controller.todoList.data.length == 0) {
-            return Center(
-              child: Text("Você concluiu todas as suas tarefas!")
-            );
-          }
+        if (controller.todoList.data == null) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (controller.todoList.data.length == 0) {
+          return Center(child: Text("Você concluiu todas as suas tarefas!"));
+        }
 
-          List<TodoModel> list = controller.todoList.data;
+        List<TodoModel> list = controller.todoList.data;
 
-          return ReorderableListView(
+        return ReorderableListView(
             onReorder: (oldIndex, newIndex) {
-              list[oldIndex].position = newIndex > oldIndex ? newIndex - 1 : newIndex;
+              list[oldIndex].position =
+                  newIndex > oldIndex ? newIndex - 1 : newIndex;
               for (TodoModel model in list) {
                 int index = list.indexOf(model);
 
-                if(oldIndex != index && oldIndex > index && newIndex <= index) {
+                if (oldIndex != index &&
+                    oldIndex > index &&
+                    newIndex <= index) {
                   list[index].position = index + 1;
                   list[index].save();
-                } else if (oldIndex != index && oldIndex < index && newIndex >= index) {
+                } else if (oldIndex != index &&
+                    oldIndex < index &&
+                    newIndex >= index) {
                   list[index].position = index - 1;
                   list[index].save();
                 }
               }
               list[oldIndex].save();
-              
             },
             children: [
               for (TodoModel model in list)
@@ -80,14 +112,13 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     },
                   ),
                 ),
-            ]
-          );
-        }),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _showDialog,
-          child: Icon(Icons.add),
-        ),
-      );
+            ]);
+      }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _showDialog,
+        child: Icon(Icons.add),
+      ),
+    );
   }
 
   _showDialog([TodoModel model]) {
@@ -115,8 +146,33 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               ),
               FlatButton(
                 onPressed: () async {
-                  await model.save();
-                  Modular.to.pop();
+                  try {
+                    await model.save();
+                    Modular.to.pop();
+                  } catch (e) {
+                    showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title: Text('Campo Obrigatório!'),
+                            content: SingleChildScrollView(
+                              child: ListBody(
+                                children: <Widget>[
+                                  Text('$e'),
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text('Ok'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
+                        });
+                  }
                 },
                 child: Text("Salvar"),
               ),

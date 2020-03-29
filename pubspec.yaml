@@ -23,6 +23,7 @@ dependencies:
   flutter_modular: ^1.0.0
   cloud_firestore: ^0.13.4+1
   firebase_core: ^0.4.4+2
+  url_launcher: ^5.4.2
   flutter:
     sdk: flutter
 
