@@ -96,7 +96,16 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               for (TodoModel model in list)
                 ListTile(
                   key: ValueKey(model.reference),
-                  title: Text(model.title),
+                  title: Text(
+                    model.title, 
+                    style: 
+                      model.check ?
+                      TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.grey
+                      ) : 
+                      null 
+                  ),
                   onTap: () {
                     _showDialog(model);
                   },
@@ -151,27 +160,28 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     Modular.to.pop();
                   } catch (e) {
                     showDialog(
-                        context: context,
-                        builder: (_) {
-                          return AlertDialog(
-                            title: Text('Campo Obrigatório!'),
-                            content: SingleChildScrollView(
-                              child: ListBody(
-                                children: <Widget>[
-                                  Text('$e'),
-                                ],
-                              ),
+                      context: context,
+                      builder: (_) {
+                        return AlertDialog(
+                          title: Text('Campo Obrigatório!'),
+                          content: SingleChildScrollView(
+                            child: ListBody(
+                              children: <Widget>[
+                                Text('$e'),
+                              ],
                             ),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text('Ok'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          );
-                        });
+                          ),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text('Ok'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      }
+                    );
                   }
                 },
                 child: Text("Salvar"),

@@ -21,18 +21,18 @@ class TodoModel {
   Future save() async {
     if(title.isEmpty) {
       throw("Por favor, preencha o campo título!");
-    }
-
-    if (reference == null) {
-      int total = (await Firestore.instance.collection('todo').getDocuments())
-          .documents
-          .length;
-      reference = await Firestore.instance
-          .collection('todo')
-          .add({'title': title, 'check': check, 'position': total});
     } else {
-      reference
-          .updateData({'title': title, 'check': check, 'position': position});
+      if (reference == null) {
+        int total = (await Firestore.instance.collection('todo').getDocuments())
+            .documents
+            .length;
+        reference = await Firestore.instance
+            .collection('todo')
+            .add({'title': title, 'check': check, 'position': total});
+      } else {
+        reference
+            .updateData({'title': title, 'check': check, 'position': position});
+      }
     }
   }
 
